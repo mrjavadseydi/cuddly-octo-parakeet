@@ -1,48 +1,74 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@include('master.header')
 
-        <x-jet-validation-errors class="mb-4" />
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+    <!-- section begin -->
+    <section id="subheader" data-bgimage="url(images/background/5.png) bottom">
+        <div class="center-y relative text-center" data-scroll-speed="4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <form action='blank.php' class="row" id='form_subscribe' method="post" name="myForm">
+                            <div class="col-md-12 text-center">
+                                <h1  class="vazir">ورود</h1>
+                                <p>ورود به حساب کاربری </p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        @endif
+        </div>
+    </section>
+    <!-- section close -->
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
 
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+    <section class="no-top" data-bgimage="url(images/background/3.png) top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <form name="contactForm" id='contact_form' class="form-border" method="post" action='{{route('login')}}'>
+                        @csrf
+                        <h3  class="vazir text-right">وارد حساب خود شوید </h3>
+
+                        <div class="field-set">
+                            <label class="text-right">ایمیل</label>
+                            <input type='email' name='name' id='name' class="form-control text-left" placeholder="">
+                        </div>
+
+
+                        <div class="field-set">
+                            <label class="text-right">رمزعبور</label>
+                            <input type='password' name='password' dir="ltr" id='email' class="form-control text-left " placeholder="">
+                        </div>
+
+                        <div id='submit' class="pull-left">
+                            <input type='submit' id='send_message' dir="ltr" value='ورود' class="btn btn-custom color-2 vazir float-right">
+
+                            <div id='mail_success' class='success'>Your message has been sent successfully.</div>
+                            <div id='mail_fail' class='error'>Sorry, error occured this time sending your message.</div>
+
+                            <div class="clearfix"></div>
+
+                            <div class="spacer-single"></div>
+
+                            <!-- social icons -->
+                            <ul class="list s3 text-right">
+                                <li>ورود سریع با :</li>
+                                <li><a href="{{route('googleAuth')}}">گوگل</a></li>
+                            </ul>
+                            <!-- social icons close -->
+
+                        </div>
+
+                    </form>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
+</div>
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <input id="remember_me" type="checkbox" class="form-checkbox" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-jet-button class="ml-4">
-                    {{ __('Login') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+@include('master.footer')
