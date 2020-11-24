@@ -70,5 +70,6 @@
 
 </div>
 
-
+<script src="{{asset('js/app.js')}}"></script>
+@include('sweet::alert')
 @include('master.footer')

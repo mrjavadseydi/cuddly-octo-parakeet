@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 
 class GoogleAuthController extends Controller
 {
@@ -27,6 +29,7 @@ class GoogleAuthController extends Controller
                 return redirect(route('login'));
             }
         }catch (\Exception $e){
+            alert()->error('خطایی یافت شد')->confirmButton('تایید');
             return redirect(route('login'));
         }
     }
